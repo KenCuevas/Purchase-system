@@ -1,10 +1,13 @@
 package com.kencuevas.shoppingsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Kenny Cuevas
@@ -13,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Article {
+public class Article implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,7 +33,19 @@ public class Article {
     private int availability;
     private boolean status;
 
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL)
+    private Set<PurchaseOrder> purchaseOrderSet;
+
     public Article() {
+    }
+
+    public Set<PurchaseOrder> getPurchaseOrderSet() {
+        return purchaseOrderSet;
+    }
+
+    public void setPurchaseOrderSet(Set<PurchaseOrder> purchaseOrderSet) {
+        this.purchaseOrderSet = purchaseOrderSet;
     }
 
     public Long getId() {
