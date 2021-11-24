@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "unit_measure")
+@Table(name = "units_measures")
 public class UnitMeasure implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

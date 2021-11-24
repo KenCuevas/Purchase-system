@@ -16,6 +16,7 @@ import java.util.Set;
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "articles")
 public class Article implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,11 +24,7 @@ public class Article implements Serializable {
     private String description;
     private String brand;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "art_measure",
-    joinColumns =
-            { @JoinColumn(name = "article_id", referencedColumnName = "id")},
-    inverseJoinColumns =
-            { @JoinColumn(name = "unit_Measure_id", referencedColumnName = "id")})
+    @JoinColumn(name = "unit_measure_id")
     private UnitMeasure unitMeasure;
 
     private int availability;
