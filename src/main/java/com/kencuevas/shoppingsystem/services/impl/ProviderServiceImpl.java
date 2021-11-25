@@ -1,6 +1,7 @@
 package com.kencuevas.shoppingsystem.services.impl;
 
 import com.kencuevas.shoppingsystem.dto.ProviderDTO;
+import com.kencuevas.shoppingsystem.exceptions.ResourceNotFoundException;
 import com.kencuevas.shoppingsystem.models.Provider;
 import com.kencuevas.shoppingsystem.repositories.ProviderRepository;
 import com.kencuevas.shoppingsystem.services.ProviderService;
@@ -9,7 +10,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * @author Kenny Cuevas
+ * @version 1.0.0
+ * @since 1.0
+ */
 @Service
 public class ProviderServiceImpl implements ProviderService {
     private ProviderRepository providerRepository;
@@ -34,6 +39,33 @@ public class ProviderServiceImpl implements ProviderService {
     public List<ProviderDTO> getAllProvider() {
         List<Provider> providers = providerRepository.findAll();
         return providers.stream().map(provider -> mapToDTO(provider)).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProviderDTO getProviderById(long id) {
+        Provider provider = providerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Provider", "id", id));
+        return mapToDTO(provider);
+    }
+
+    @Override
+    public ProviderDTO updateProvider(ProviderDTO providerDTO, long id) {
+        // Get provider by id from the database
+        Provider provider = providerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Provider", "id", id));
+
+        provider.setCedula(providerDTO.getCedula());
+        provider.setTradeName(providerDTO.getTradeName());
+        provider.setStatus(providerDTO.isStatus());
+
+        Provider updateProvider = providerRepository.save(provider);
+
+        return mapToDTO(updateProvider);
+    }
+
+    @Override
+    public void deleteProviderById(long id) {
+        // Get provider by id from the database
+        Provider provider = providerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Provider", "id", id));
+        providerRepository.delete(provider);
     }
 
     //Convert entity into DTO
