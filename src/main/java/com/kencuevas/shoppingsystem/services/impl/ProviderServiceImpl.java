@@ -1,13 +1,17 @@
 package com.kencuevas.shoppingsystem.services.impl;
 
 import com.kencuevas.shoppingsystem.dto.ProviderDTO;
+import com.kencuevas.shoppingsystem.dto.ProviderResponse;
 import com.kencuevas.shoppingsystem.exceptions.ResourceNotFoundException;
 import com.kencuevas.shoppingsystem.models.Provider;
 import com.kencuevas.shoppingsystem.repositories.ProviderRepository;
 import com.kencuevas.shoppingsystem.services.ProviderService;
-import org.aspectj.apache.bcel.classfile.Module;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 /**
@@ -36,9 +40,30 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
-    public List<ProviderDTO> getAllProvider() {
-        List<Provider> providers = providerRepository.findAll();
-        return providers.stream().map(provider -> mapToDTO(provider)).collect(Collectors.toList());
+    public ProviderResponse getAllProvider(int pageNumber, int pageSize, String sortBy,String sortDir) {
+
+        //Sort in ascending and descending order
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        // Create Pageable instance
+        PageRequest pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Provider> providers = providerRepository.findAll(pageable);
+
+        //Get content for page object
+        List<Provider>listOfProviders = providers.getContent();
+
+        List<ProviderDTO> content =  listOfProviders.stream().map(provider -> mapToDTO(provider)).collect(Collectors.toList());
+        ProviderResponse providerResponse = new ProviderResponse();
+        providerResponse.setContent(content);
+        providerResponse.setPageNumber(providers.getNumber());
+        providerResponse.setPageSize(providers.getSize());
+        providerResponse.setTotalElements(providers.getTotalElements());
+        providerResponse.setTotalPages(providers.getTotalPages());
+        providerResponse.setLast(providers.isLast());
+
+        return providerResponse;
     }
 
     @Override

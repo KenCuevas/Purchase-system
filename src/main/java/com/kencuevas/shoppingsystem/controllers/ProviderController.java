@@ -1,7 +1,9 @@
 package com.kencuevas.shoppingsystem.controllers;
 
 import com.kencuevas.shoppingsystem.dto.ProviderDTO;
+import com.kencuevas.shoppingsystem.dto.ProviderResponse;
 import com.kencuevas.shoppingsystem.services.ProviderService;
+import com.kencuevas.shoppingsystem.utils.AppContants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +30,13 @@ public class ProviderController {
     }
     // This function allows us to obtain all the suppliers that we have stored in the database
     @GetMapping("/search/provider")
-    public List<ProviderDTO>getAllProviders(){
-        return providerService.getAllProvider();
+    public ProviderResponse getAllProviders(
+            @RequestParam(value = "pageNumber", defaultValue = AppContants.DEFAULT_PAGE_NUMBER, required = false) int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppContants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppContants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppContants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
+    ){
+        return providerService.getAllProvider(pageNumber, pageSize,sortBy, sortDir);
     }
     // This function allows us to search for a record by ID of the suppliers stored in the database.
     @GetMapping("/search/provider/{id}")

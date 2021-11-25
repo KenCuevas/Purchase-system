@@ -1,6 +1,7 @@
 package com.kencuevas.shoppingsystem.services;
 
 import com.kencuevas.shoppingsystem.dto.ProviderDTO;
+import com.kencuevas.shoppingsystem.dto.ProviderResponse;
 
 import java.util.List;
 /**
@@ -12,7 +13,7 @@ public interface ProviderService {
 
     ProviderDTO createProvider(ProviderDTO providerDTO);
 
-    List<ProviderDTO> getAllProvider();
+    ProviderResponse getAllProvider(int pageNumber, int pageSize, String sortBy,String sortDir);
 
     ProviderDTO getProviderById(long id);
 
