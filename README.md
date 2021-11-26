@@ -22,6 +22,6 @@ El proyecto en general debe cumplir con los siguientes requerimientos
 Cada seccion que dice "Gestion" significa un crud o servicio diferente, ademas el programa debera integrarse junto a otro proyecto de contabilidad.
 
 # Como correr el proyecto?
-El proyecto estara alojado en la nube tan pronto se termine el desarrollo del proyecto:
+El proyecto estara alojado en la nube tan pronto se termine el desarrollo del proyecto acá estara el enlace para acceder al UI del sistema.
 
 26-11-2021
