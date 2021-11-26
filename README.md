@@ -19,6 +19,9 @@ El proyecto en general debe cumplir con los siguientes requerimientos
 
 ![Captura de pantalla de 2021-11-06 15-13-53](https://user-images.githubusercontent.com/50937209/140621295-99f1008d-104c-4198-91d1-2ad6b950b8ef.png)
 
-Cada seccion que dice "Gestion" significa un crud o servicio diferente, ademas el programa debera enviar mediante Web Service data al proyecto asignado a otros estudiantes de contabilidad: Asientos Contables.
+Cada seccion que dice "Gestion" significa un crud o servicio diferente, ademas el programa debera integrarse junto a otro proyecto de contabilidad.
 
 # Como correr el proyecto?
+El proyecto estara alojado en la nube tan pronto se termine el desarrollo del proyecto:
+
+26-11-2021
