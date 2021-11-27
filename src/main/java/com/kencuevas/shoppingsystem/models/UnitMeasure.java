@@ -10,23 +10,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * This class is an entity that allows us to mirror the unit_measure_TB table stored in the database.
  * @author Kenny Cuevas
- * @version 1.0.0
- * @since 1.0
+ * @version 25/10/2021/A
  */
+
+//Lombok library annotations that allow us to reduce the amount of code we create.
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
-@Table(name = "unitMeasureTB")
+@Table(name = "MeasureTB")
 public class UnitMeasure{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY)
+    @Column(
+            name = "measure_id")
+    private Long id;
     private String description;
     private boolean status;
-    @OneToMany(mappedBy = "unitMeasure", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Article> articles = new HashSet<>();
+    @OneToOne(mappedBy = "measure", cascade = CascadeType.ALL)
+    private Article article;
 
 }

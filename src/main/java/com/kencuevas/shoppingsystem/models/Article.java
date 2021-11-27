@@ -26,11 +26,14 @@ public class Article{
     private Long id;
     private String description;
     private String brand;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "unitMeasureId", nullable = false)
-    private UnitMeasure unitMeasure;
     private int availability;
     private boolean status;
+
+    //A 1 to n relationship is created between the TB units of measure and TB articles.
+    @OneToOne
+    @JoinColumn(name = "measure_id", updatable = false, nullable = false)
+    private UnitMeasure measure;
+
 
 //    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY,
 //    cascade = CascadeType.ALL)

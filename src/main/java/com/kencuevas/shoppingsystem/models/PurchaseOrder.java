@@ -21,7 +21,7 @@ import java.time.LocalDate;
 @Table(name = "PurcharseOrderTB")
 public class PurchaseOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderNumber;
     private LocalDate dateOrder;
