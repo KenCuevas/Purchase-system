@@ -55,6 +55,8 @@ public class ProviderServiceImpl implements ProviderService {
         List<Provider>listOfProviders = providers.getContent();
 
         List<ProviderDTO> content =  listOfProviders.stream().map(provider -> mapToDTO(provider)).collect(Collectors.toList());
+
+
         ProviderResponse providerResponse = new ProviderResponse();
         providerResponse.setContent(content);
         providerResponse.setPageNumber(providers.getNumber());
