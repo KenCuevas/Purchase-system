@@ -11,6 +11,9 @@ Para el backend esteremos usando:
 - JPA
 - Spring Security
 - Junit
+- Lombok
+
+Este servicio fue desplegado en AWS: <a href="http://springbootpurchasingsys-env.eba-wxbbemnh.us-east-2.elasticbeanstalk.com/swagger-ui/#/"> Pulsar aqui para ver la documentacion</a>
 
 Para el frontend se estara utilizando:
 - ReactJS
