@@ -22,4 +22,32 @@ public class ArticleController {
                                                    @RequestBody ArticleDTO articleDTO){
         return new ResponseEntity<>(articleService.createArticle(measureId, articleDTO), HttpStatus.CREATED);
     }
+    @GetMapping("/units/{measureId}/articles")
+    public List<ArticleDTO>getArticleByMeasureId(@PathVariable(value = "measureId") Long measureId){
+        return articleService.getArticlesByMeasureId(measureId);
+    }
+    @GetMapping("/units/{measureId}/articles/{id}")
+    public ResponseEntity<ArticleDTO>getArticleById(@PathVariable(value = "measureId") Long measureId,
+                                                    @PathVariable(value = "id") Long articleId){
+        ArticleDTO articleDTO = articleService.getArticlesById(measureId, articleId);
+
+        return new ResponseEntity<>(articleDTO, HttpStatus.OK);
+    }
+    @PutMapping("/units/{measureId}/update/article/{id}")
+    public ResponseEntity<ArticleDTO>updateArticle(@PathVariable(value = "measureId") Long measureId,
+                                                   @PathVariable(value = "id") Long articleId,
+                                                   @RequestBody ArticleDTO articleDTO){
+        ArticleDTO updateArticle = articleService.updateArticle(measureId, articleId, articleDTO);
+        return new ResponseEntity<>(updateArticle, HttpStatus.OK);
+    }
+    @DeleteMapping("/units/{measureId}/delete/article/{id}")
+    public ResponseEntity<String>deleteArticle(@PathVariable(value = "measureId") Long measureId,
+                                               @PathVariable(value = "id") Long articleId){
+        articleService.deleteArticle(measureId, articleId);
+        return new ResponseEntity<>("Article deleted successfully", HttpStatus.OK);
+    }
+    @GetMapping("/all/articles")
+    public List<ArticleDTO>getAllArticle(){
+        return articleService.getAllArticles();
+    }
 }

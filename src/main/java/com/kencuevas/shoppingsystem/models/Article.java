@@ -1,8 +1,6 @@
 package com.kencuevas.shoppingsystem.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,7 +10,8 @@ import java.util.Set;
  * @version 1.0.0
  * @since 1.0
  */
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -29,7 +28,7 @@ public class Article{
     private int availability;
     private boolean status;
 
-    //A 1 to n relationship is created between the TB units of measure and TB articles.
+    //A 1 to 1 relationship is created between the TB units of measure and TB articles.
     @OneToOne
     @JoinColumn(name = "measure_id", updatable = false, nullable = false)
     private UnitMeasure measure;

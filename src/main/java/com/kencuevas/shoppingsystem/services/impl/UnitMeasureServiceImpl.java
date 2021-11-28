@@ -5,6 +5,7 @@ import com.kencuevas.shoppingsystem.exceptions.ResourceNotFoundException;
 import com.kencuevas.shoppingsystem.models.UnitMeasure;
 import com.kencuevas.shoppingsystem.repositories.UnitMeasureRepository;
 import com.kencuevas.shoppingsystem.services.UnitMeasureService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class UnitMeasureServiceImpl implements UnitMeasureService {
     private UnitMeasureRepository measureRepository;
+    private ModelMapper mapper;
 
-    public UnitMeasureServiceImpl(UnitMeasureRepository measureRepository) {
+    public UnitMeasureServiceImpl(UnitMeasureRepository measureRepository, ModelMapper mapper) {
         this.measureRepository = measureRepository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -63,20 +66,21 @@ public class UnitMeasureServiceImpl implements UnitMeasureService {
 
     //Convert entity into DTO
     private UnitMeasureDTO mapToDTO(UnitMeasure measure){
-        UnitMeasureDTO measureDTO = new UnitMeasureDTO();
-
-        measureDTO.setId(measure.getId());
-        measureDTO.setDescription(measure.getDescription());
-        measureDTO.setStatus(measure.isStatus());
+        UnitMeasureDTO measureDTO = mapper.map(measure, UnitMeasureDTO.class);
+//        UnitMeasureDTO measureDTO = new UnitMeasureDTO();
+//        measureDTO.setId(measure.getId());
+//        measureDTO.setDescription(measure.getDescription());
+//        measureDTO.setStatus(measure.isStatus());
 
         return measureDTO;
     }
     //Convert DTO to entity
     private UnitMeasure mapToEntity(UnitMeasureDTO measureDTO){
-        UnitMeasure measure = new UnitMeasure();
+        UnitMeasure measure = mapper.map(measureDTO, UnitMeasure.class);
 
-        measure.setDescription(measureDTO.getDescription());
-        measure.setStatus(measureDTO.isStatus());
+//        UnitMeasure measure = new UnitMeasure();
+//        measure.setDescription(measureDTO.getDescription());
+//        measure.setStatus(measureDTO.isStatus());
 
         return measure;
     }

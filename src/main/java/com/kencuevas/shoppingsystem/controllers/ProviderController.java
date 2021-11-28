@@ -38,6 +38,10 @@ public class ProviderController {
     ){
         return providerService.getAllProvider(pageNumber, pageSize,sortBy, sortDir);
     }
+    @GetMapping("/all/providers")
+    public List<ProviderDTO>getAllSuppliers(){
+        return providerService.getAllSuppliers();
+    }
     // This function allows us to search for a record by ID of the suppliers stored in the database.
     @GetMapping("/search/provider/{id}")
     public ResponseEntity<ProviderDTO> getProviderById(@PathVariable(name = "id") long id){

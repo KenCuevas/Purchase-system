@@ -1,6 +1,8 @@
 package com.kencuevas.shoppingsystem.dto;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class ArticleDTO {
     private long id;
@@ -8,4 +10,5 @@ public class ArticleDTO {
     private String brand;
     private int availability;
     private boolean status;
+    private UnitMeasureDTO measures;
 }

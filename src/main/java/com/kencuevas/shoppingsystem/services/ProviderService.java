@@ -20,4 +20,6 @@ public interface ProviderService {
     ProviderDTO updateProvider(ProviderDTO providerDTO, long id);
 
     void deleteProviderById(long id);
+
+    List<ProviderDTO>getAllSuppliers();
 }

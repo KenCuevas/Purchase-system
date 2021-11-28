@@ -94,6 +94,12 @@ public class ProviderServiceImpl implements ProviderService {
         providerRepository.delete(provider);
     }
 
+    @Override
+    public List<ProviderDTO> getAllSuppliers() {
+        List<Provider>providerList = providerRepository.findAll();
+        return providerList.stream().map(provider -> mapToDTO(provider)).collect(Collectors.toList());
+    }
+
     //Convert entity into DTO
     private ProviderDTO mapToDTO(Provider provider){
         ProviderDTO providerDTO = new ProviderDTO();
