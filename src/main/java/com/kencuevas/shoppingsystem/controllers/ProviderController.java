@@ -6,6 +6,7 @@ import com.kencuevas.shoppingsystem.services.ProviderService;
 import com.kencuevas.shoppingsystem.utils.AppContants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class ProviderController {
     private ProviderService providerService;
 
@@ -23,6 +24,7 @@ public class ProviderController {
         this.providerService = providerService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     // This function allows the user to add new suppliers to the database
     @PostMapping("/add/provider")
     public ResponseEntity<ProviderDTO> createProvider(@RequestBody ProviderDTO providerDTO){
@@ -47,6 +49,7 @@ public class ProviderController {
     public ResponseEntity<ProviderDTO> getProviderById(@PathVariable(name = "id") long id){
         return ResponseEntity.ok(providerService.getProviderById(id));
     }
+    @PreAuthorize("hasRole('ADMIN')")
     // This function allows us to update a supplier that we have stored in our database
     @PutMapping("/update/provider/{id}")
     public ResponseEntity<ProviderDTO> updateProvider(@RequestBody  ProviderDTO providerDTO, @PathVariable(name = "id") long id){
@@ -54,6 +57,7 @@ public class ProviderController {
 
         return new ResponseEntity<>(providerResponse, HttpStatus.OK);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     // This function deletes the record corresponding to the id we passed in the endpoint.
     @DeleteMapping("/delete/provider/{id}")
     public ResponseEntity<String> deleteProvider(@PathVariable(name = "id") long id){
