@@ -32,7 +32,6 @@ import java.util.Collections;
 public class AuthController {
     @Autowired
     private AuthenticationManager authenticate;
-
     @Autowired
     private UserRepository userRepository;
     @Autowired

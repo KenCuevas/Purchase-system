@@ -3,6 +3,7 @@ package com.kencuevas.shoppingsystem.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,9 @@ public class Article{
     private int availability;
     private boolean status;
 
-    //A 1 to 1 relationship is created between the TB units of measure and TB articles.
+    //A 1 to n relationship is created between the TB units of measure and TB articles.
+//    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<UnitMeasure> measures = new HashSet<>();
     @OneToOne
     @JoinColumn(name = "measure_id", updatable = false, nullable = false)
     private UnitMeasure measure;

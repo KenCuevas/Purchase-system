@@ -30,6 +30,9 @@ public class UnitMeasure{
     private Long id;
     private String description;
     private boolean status;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "ArticleId", nullable = false)
+//    private Article article;
     @OneToOne(mappedBy = "measure", cascade = CascadeType.ALL)
     private Article article;
 
