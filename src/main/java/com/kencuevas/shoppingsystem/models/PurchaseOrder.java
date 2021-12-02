@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -21,23 +20,17 @@ import java.time.LocalDate;
 @Table(name = "PurcharseOrderTB")
 public class PurchaseOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderNumber;
     private LocalDate dateOrder;
     private boolean status;
     private int quantity;
     private BigInteger unitCost;
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "article_id", nullable = false)
-//    private Article article;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "article_id", nullable = false)
+    private Article article;
 
-//    public Article getArticle() {
-//        return article;
-//    }
-//
-//    public void setArticle(Article article) {
-//        this.article = article;
-//    }
 }

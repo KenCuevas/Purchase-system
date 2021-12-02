@@ -36,18 +36,8 @@ public class Article{
     @JoinColumn(name = "measure_id", updatable = false, nullable = false)
     private UnitMeasure measure;
 
-
-//    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY,
-//    cascade = CascadeType.ALL)
-//    private Set<PurchaseOrder> purchaseOrderSet;
-
-
-//    public Set<PurchaseOrder> getPurchaseOrderSet() {
-//        return purchaseOrderSet;
-//    }
-//
-//    public void setPurchaseOrderSet(Set<PurchaseOrder> purchaseOrderSet) {
-//        this.purchaseOrderSet = purchaseOrderSet;
-//    }
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL)
+    private Set<PurchaseOrder> purchaseOrderSet;
 
 }

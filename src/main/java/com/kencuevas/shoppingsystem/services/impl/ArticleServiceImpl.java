@@ -11,14 +11,15 @@ import com.kencuevas.shoppingsystem.services.ArticleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  * @author Kenny Cuevas
  * @version 1.0.0
  * @since 1.0
  */
+
 @Service
 public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository articleRepository;
@@ -40,7 +41,6 @@ public class ArticleServiceImpl implements ArticleService {
                 ()-> new ResourceNotFoundException("Unit measure", "id",measureId));
 
         article.setMeasure(measure);
-
         // Save article entity to database
         Article newArticle = articleRepository.save(article);
         return mapToDTO(newArticle);
@@ -90,7 +90,6 @@ public class ArticleServiceImpl implements ArticleService {
 
         return mapToDTO(updateArticle);
     }
-
     @Override
     public void deleteArticle(Long measureId, Long articleId) {
         // Retrieve measure entity by Id
@@ -106,7 +105,6 @@ public class ArticleServiceImpl implements ArticleService {
         }
         articleRepository.delete(articles);
     }
-
     @Override
     public List<ArticleDTO> getAllArticles() {
         List<Article>articleList=articleRepository.findAll();
@@ -115,23 +113,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     private ArticleDTO mapToDTO(Article article){
         ArticleDTO articleDTO = mapper.map(article, ArticleDTO.class);
-//        ArticleDTO articleDTO = new ArticleDTO();
-//        articleDTO.setId(article.getId());
-//        articleDTO.setDescription(article.getDescription());
-//        articleDTO.setBrand(article.getBrand());
-//        articleDTO.setAvailability(article.getAvailability());
-//        articleDTO.setStatus(article.isStatus());
         return articleDTO;
     }
 
     private Article mapToEntity(ArticleDTO articleDTO){
         Article article = mapper.map(articleDTO, Article.class);
-//        Article article = new Article();
-//         article.setId(articleDTO.getId());
-//         article.setDescription(articleDTO.getDescription());
-//         article.setBrand(articleDTO.getBrand());
-//         article.setAvailability(articleDTO.getAvailability());
-//         article.setStatus(articleDTO.isStatus());
          return article;
     }
 //    public UnitMeasure getMyMeasureId(){
