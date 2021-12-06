@@ -25,7 +25,7 @@ public class MeasureController {
         return new ResponseEntity<>(measureService.createMeasure(measureDTO), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search/measure")
+    @GetMapping("/all/measure")
     public List<UnitMeasureDTO>getAllMeasure(){
         return measureService.getAllMeasure();
     }

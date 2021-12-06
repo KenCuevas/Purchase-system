@@ -49,6 +49,7 @@ public class ArticleController {
         return new ResponseEntity<>(updateArticle, HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Delete articles by ID REST API")
     @DeleteMapping("/units/{measureId}/delete/article/{id}")
     public ResponseEntity<String>deleteArticle(@PathVariable(value = "measureId") Long measureId,
                                                @PathVariable(value = "id") Long articleId){
