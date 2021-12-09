@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class is an entity that allows us to mirror the unit_measure_TB table stored in the database.
@@ -31,10 +33,6 @@ public class UnitMeasure{
     private Long id;
     private String description;
     private boolean status;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "ArticleId", nullable = false)
-//    private Article article;
     @OneToOne(mappedBy = "measure", cascade = CascadeType.ALL)
     private Article article;
-
 }

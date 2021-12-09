@@ -1,4 +1,5 @@
 package com.kencuevas.shoppingsystem.repositories;
+
 import com.kencuevas.shoppingsystem.models.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 

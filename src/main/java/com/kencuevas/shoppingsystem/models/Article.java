@@ -38,7 +38,7 @@ public class Article{
     private UnitMeasure measure;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY,
-    cascade = CascadeType.ALL)
+            cascade = CascadeType.ALL)
     private Set<PurchaseOrder> purchaseOrderSet;
 
 }

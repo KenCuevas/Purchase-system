@@ -2,9 +2,6 @@ package com.kencuevas.shoppingsystem.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Value;
-
-import java.util.Set;
 
 @ApiModel(description = "Article model information")
 @Data
