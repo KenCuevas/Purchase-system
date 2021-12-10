@@ -16,6 +16,7 @@ import java.util.List;
  * @since 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1")
 public class ProviderController {
     private ProviderService providerService;

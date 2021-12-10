@@ -14,6 +14,7 @@ import java.util.List;
 
 @Api(value = "CRUD REST APIs for purchasing orders resources")
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1")
 public class PurchaseOrderController {
     private PurchaseOrderService purchaseOrderService;
@@ -56,5 +57,11 @@ public class PurchaseOrderController {
                                              @PathVariable(value = "id")Long purchaseOrderId){
         purchaseOrderService.deleteOrder(articleId, purchaseOrderId);
         return new ResponseEntity<>("Order deleted successfully", HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get all orders")
+    @GetMapping("/all/orders")
+    public List<PurchaseOrderDTO>getAllOrders(){
+        return purchaseOrderService.getAllOrders();
     }
 }

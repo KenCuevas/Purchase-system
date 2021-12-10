@@ -14,5 +14,6 @@ public class PurchaseOrderDTO {
     private boolean status;
     private int quantity;
     private BigInteger unitCost;
+    private int idAsientoContable;
     private Set<ArticleDTO> articles;
 }

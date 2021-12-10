@@ -13,6 +13,7 @@ import java.util.List;
 
 @Api("CRUD Rest APIs for article resources")
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1")
 public class ArticleController {
     private ArticleService articleService;

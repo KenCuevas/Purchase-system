@@ -85,6 +85,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
         purchaseOrder.setStatus(purchaseRequest.isStatus());
         purchaseOrder.setQuantity(purchaseRequest.getQuantity());
         purchaseOrder.setUnitCost(purchaseRequest.getUnitCost());
+        purchaseOrder.setIdAsientoContable(purchaseRequest.getIdAsientoContable());
 
         PurchaseOrder updatedOrder = purchaseOrderRepository.save(purchaseOrder);
         return mapToDTO(updatedOrder);
@@ -103,6 +104,12 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
             throw new PurchaseApiException(HttpStatus.BAD_REQUEST, "Order does not belong to article");
         }
         purchaseOrderRepository.delete(purchaseOrder);
+    }
+
+    @Override
+    public List<PurchaseOrderDTO> getAllOrders() {
+        List<PurchaseOrder>purchaseOrderList=purchaseOrderRepository.findAll();
+        return purchaseOrderList.stream().map(orders -> mapToDTO(orders)).collect(Collectors.toList());
     }
 
     private PurchaseOrderDTO mapToDTO(PurchaseOrder purchaseOrder){

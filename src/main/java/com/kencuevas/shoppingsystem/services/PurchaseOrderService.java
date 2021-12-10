@@ -10,4 +10,5 @@ public interface PurchaseOrderService {
     PurchaseOrderDTO getOrderById(Long articleId, Long purchaseOrderId);
     PurchaseOrderDTO updateOrder(Long articleId, long purchaseOrderId, PurchaseOrderDTO purchaseRequest);
     void deleteOrder(Long articleId, Long purchaseOrderId);
+    List<PurchaseOrderDTO>getAllOrders();
 }

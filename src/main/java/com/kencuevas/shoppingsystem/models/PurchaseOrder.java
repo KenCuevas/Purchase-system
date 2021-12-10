@@ -31,6 +31,7 @@ public class PurchaseOrder {
     private boolean status;
     private int quantity;
     private BigInteger unitCost;
+    private int idAsientoContable;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "article_id", nullable = false)
